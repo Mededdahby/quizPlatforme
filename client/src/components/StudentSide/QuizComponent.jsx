@@ -1,8 +1,7 @@
 // components/QuizComponent.jsx
-
 import React, { useState, useEffect } from "react";
-
 import AboutQuiz from "./AboutQuiz";
+import styles from "./quizComponnet.module.css"; // Import the CSS module
 
 const QuizComponent = ({ userInfo }) => {
   const [quizzes, setQuizzes] = useState([]);
@@ -62,31 +61,27 @@ const QuizComponent = ({ userInfo }) => {
   }, []);
 
   return (
-    <div
-      className="container-fluid"
-      style={{ backgroundColor: "#f0f0f0", padding: "20px" }}
-    >
-      <div className="row justify-content-center align-items-center">
+    <div className={styles.containerFluid}>
+      <div className={styles.row}>
+        {" "}
         {compenentPage &&
-          quizzes.map((quiz,i) => (
-            <div key={i} className="col-md-4 mb-4">
-              <div
-                className="card"
-                style={{
-                  backgroundColor: "#ffffff",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <div className="card-body">
-                  <h5 className="card-title">{quiz.title}</h5>
-                  <p className="card-text">Class: {quiz.class}</p>
-                  <p className="card-text">Subject: {quiz.subject}</p>
-                  <p className="card-text date">Started at: {quiz.startDate}</p>
+          quizzes.map((quiz, i) => (
+            <div key={i} className={`${styles.colMd4} ${styles.mb4}`}>
+              {" "}
+              <div className={styles.card}>
+                <div className={styles.cardBody}>
+                  {" "}
+                  <h5 className={styles.cardTitle}>{quiz.title}</h5>
+                  <p className={styles.cardText}>Class: {quiz.class}</p>
+                  <p className={styles.cardText}>Subject: {quiz.subject}</p>
+                  <p className={`${styles.cardText} ${styles.date}`}>
+                    Started at: {quiz.startDate}
+                  </p>{" "}
                 </div>
-                <div className="card-footer text-center">
+                <div className={styles.cardFooter}>
                   {!isQuizDone(quiz._id) && (
                     <button
-                      className="btn btn-outline-success"
+                      className={`${styles.btn} ${styles.btnOutlineSuccess}`}
                       onClick={() => handleAboutPage(quiz)}
                       style={{ animation: "fadeIn 0.5s" }}
                     >

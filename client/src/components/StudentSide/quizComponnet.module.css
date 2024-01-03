@@ -1,33 +1,72 @@
 /* components/QuizComponent.module.css */
 
-.container-fluid {
-    background-color: #f0f0f0;
-    padding: 20px;
-  }
-  
-  .card {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    padding: 1rem;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .card-text {
-    margin-bottom: 0.5rem;
-  }
-  
-  .date {
-    color: #777;
-  }
-  
-  .btn-outline-success {
-    animation: fadeIn 0.5s;
-  }
-  
+.containerFluid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.row {
+  width: 100%;
+}
+
+.colMd4 {
+  flex: 0 0 30%; /* Adjust the width as needed */
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardBody {
+  padding: 20px;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.cardText {
+  margin-bottom: 5px;
+}
+
+.date {
+  color: #888;
+}
+
+.cardFooter {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btnOutlineSuccess {
+  background-color: #28a745;
+  color: #fff;
+  border: 1px solid #28a745;
+}
+
+.btnOutlineSuccess:hover {
+  background-color: #218838;
+}
+
+/* Add additional styles as needed */

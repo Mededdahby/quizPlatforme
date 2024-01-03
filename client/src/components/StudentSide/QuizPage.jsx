@@ -1,7 +1,9 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+// components/QuizPage.jsx
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import QuizComponent from "./QuizComponent";
+import styles from "./quizPage.module.css";
 
 const QuizPage = ({ quizData, userInfo }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -10,38 +12,35 @@ const QuizPage = ({ quizData, userInfo }) => {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timeDisplay, setTimeDisplay] = useState(true);
   const [closeButton, setCloseButton] = useState(true);
-  const [compPage, setCompPage] = useState(false);
-  const [quizId, setQuizId] = useState("");
-  const [userId, setUserId] = useState("");
   const [scor, setScor] = useState(0);
 
-  useEffect(() => {
-    // setQuizId(quizData.id);
-    // setUserId(quizInfo.id);
-  }, []);
+  const navigate = useNavigate();
 
-  const handleAnswerChange = (questionId, selectedOption) => {
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: selectedOption,
-    }));
+  useEffect(() => {}, []);
+
+  const handleAnswerChange = (selectedOption) => {
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentQuestionIndex] = selectedOption;
+      return newAnswers;
+    });
   };
 
   const handleSaveAnswers = async () => {
-    console.log(userInfo._id);
-    console.log(userInfo);
+    const d = {
+      userId: userInfo.userId,
+      quizId: quizData._id,
+      scor,
+      answers,
+    };
+
     try {
       const response = await fetch("http://localhost:5000/studentAnswers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          userId: userInfo.userId,
-          quizId: quizData._id,
-          scor,
-          answers,
-        }),
+        body: JSON.stringify(d),
       });
 
       if (response.ok) {
@@ -58,8 +57,8 @@ const QuizPage = ({ quizData, userInfo }) => {
     handleSaveAnswers();
     setTimeDisplay(false);
     setCloseButton(false);
-    setCompPage(true);
     setShowNextQuestion(true);
+    window.location.reload();
   };
 
   const handleNextQuestion = () => {
@@ -68,51 +67,45 @@ const QuizPage = ({ quizData, userInfo }) => {
   };
 
   return (
-    <div className="container-fluid ">
-      <div className=" ">
+    <div className={styles.containerFluid}>
+      <div className={styles.timeDisplay}>
         {timeDisplay && (
           <Countdown
             date={Date.now() + timeLeft * 1000}
             onComplete={handleNextQuestion}
-            renderer={({ seconds }) => <p>Time left: {seconds} seconds</p>}
+            renderer={({ seconds }) => (
+              <p className={styles.timeLeft}>Time left: {seconds} seconds</p>
+            )}
           />
         )}
       </div>
 
       {currentQuestionIndex < quizData.questions.length && (
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">
+        <div className={styles.card}>
+          <div className={styles.cardBody}>
+            <h5 className={styles.cardTitle}>
               {quizData.questions[currentQuestionIndex].text}
             </h5>
-            <ul className="list-unstyled">
+            <ul className={styles.listUnstyled}>
               {quizData.questions[currentQuestionIndex].options.map(
                 (option) => (
-                  <li key={option.id} className="mb-2">
-                    <div className="form-check">
+                  <li key={option.id} className={styles.mb2}>
+                    <div className={styles.formCheck}>
                       <input
-                        className="form-check-input"
+                        className={styles.formCheckInput}
                         type="radio"
                         name={`question_${quizData.questions[currentQuestionIndex].id}`}
                         value={option.id}
-                        checked={
-                          answers[
-                            quizData.questions[currentQuestionIndex].id
-                          ] === option.id
-                        }
-                        onChange={() =>
-                          handleAnswerChange(
-                            quizData.questions[currentQuestionIndex].id,
-                            option.id
-                          )
-                        }
+                        checked={answers[currentQuestionIndex] === option.id}
+                        onChange={() => handleAnswerChange(option.id)}
                       />
-                      <label className="form-check-label ms-2">
+                      <label
+                        className={`${styles.formCheckLabel} ${styles.ms2}`}
+                      >
                         {option.text}
                       </label>
                     </div>
                   </li>
-                       
                 )
               )}
             </ul>
@@ -120,13 +113,12 @@ const QuizPage = ({ quizData, userInfo }) => {
 
           {showNextQuestion || (
             <>
-              <h4 className="alert alert-warning">
-                Your selected answer:{" "}
-                {answers[quizData.questions[currentQuestionIndex].id]}
+              <h4 className={styles.alertWarning}>
+                Your selected answer: {answers[currentQuestionIndex]}
               </h4>
               <button
                 type="button"
-                className="btn btn-primary"
+                className={`${styles.btn} ${styles.btnPrimary}`}
                 onClick={handleNextQuestion}
               >
                 Next
@@ -139,13 +131,12 @@ const QuizPage = ({ quizData, userInfo }) => {
       {currentQuestionIndex === quizData.questions.length && closeButton && (
         <button
           type="button"
-          className="btn btn-success"
+          className={`${styles.btn} ${styles.btnSuccess}`}
           onClick={handleSubmit}
         >
           Submit
         </button>
       )}
-      {compPage && <QuizComponent />}
     </div>
   );
 };

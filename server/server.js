@@ -12,7 +12,6 @@ const uri = "mongodb://localhost:27017/Quiz";
 
 (async () => {
   await mongoose.connect(uri);
-  console.log("Connected ... !");
 })();
 
 app.use(cors({ origin: true }));
@@ -24,7 +23,6 @@ app.get("/data", async (req, res) => {
     const quizzes = await Quiz.find();
     res.json(quizzes);
   } catch (error) {
-    console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -52,7 +50,6 @@ app.post("/login", async (req, res) => {
       res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
-    console.error("Error during login:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
@@ -63,7 +60,6 @@ app.post("/studentAnswers", async (req, res) => {
     await studentAnswers.create(req.body);
     res.json({ message: "Added successfuly" });
   } catch (error) {
-    console.error("Error during adding:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
@@ -71,7 +67,6 @@ app.post("/studentAnswers", async (req, res) => {
 app.post("/addqcm", async (req, res) => {
   try {
     const newqcm = req.body;
-    console.log(newqcm.questions);
     await Quiz.create(newqcm);
     res.status(200).send({ message: true });
   } catch (error) {
@@ -81,10 +76,9 @@ app.post("/addqcm", async (req, res) => {
 
 app.post("/getUserToken", (req, res) => {
   const token = req.body.token;
-  console.log({ token });
+
   jwt.verify(token, secretKey, (error, userData) => {
     if (error) {
-      console.error("JWT verification failed:", error.message);
     } else {
       res.send({
         fullname: userData.fullname,
@@ -96,7 +90,6 @@ app.post("/getUserToken", (req, res) => {
 });
 app.delete("/deleteqcm", async (req, res) => {
   const qcmid = req.body.qcmid;
-  console.log({ qcmid });
   await Quiz.deleteOne({ _id: qcmid });
   res.send({ message: true });
 });

@@ -1,11 +1,10 @@
 // components/AboutQuiz.jsx
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-
 import QuizPage from "./QuizPage";
 import QuizComponent from "./QuizComponent";
+import styles from "./aboutQuiz.module.css"; // Import the CSS module
 
-const AboutQuiz = ({ quiz , userInfo}) => {
+const AboutQuiz = ({ quiz, userInfo }) => {
   const [quizPage, setQuizPage] = useState(false);
   const [aboutPage, setAboutPage] = useState(true);
   const [compPage, setCompPage] = useState(false);
@@ -17,35 +16,32 @@ const AboutQuiz = ({ quiz , userInfo}) => {
 
   const handleComponantPage = () => {
     setAboutPage(false);
-    setQuizPage(false)
+    setQuizPage(false);
     setCompPage(true);
   };
 
   return (
-    <div className="container my-4">
+    <div className={styles.container}>
       {aboutPage && (
-        <div className="card">
-          <div className="card-body">
-            <h2 className="card-title">{quiz.title}</h2>
-            <p className="card-text">Class: {quiz.class}</p>
-            <p className="card-text">Subject: {quiz.subject}</p>
-            <p className="card-text">Start Date: {quiz.startDate}</p>
-            <p className="card-text">Start Time: {quiz.startTime}</p>
-            <p className="card-text">Due Date: {quiz.dueDate}</p>
-            <p className="card-text">Due Time: {quiz.dueTime}</p>
-            <p className="card-text">Published By: {quiz.publishedBy}</p>
-            <p className="card-text">
-              Is Published: {quiz.isPublished ? "Yes" : "No"}
-            </p>
+        <div className={styles.card}>
+          {" "}
+          <div className={styles.cardBody}>
+            <h2 className={styles.cardTitle}>{quiz.title}</h2>
+            <p className={styles.cardText}>Class: {quiz.class}</p>
+            <p className={styles.cardText}>Subject: {quiz.subject}</p>
+            <p className={styles.cardText}>Start Date: {quiz.startDate}</p>
+            <p className={styles.cardText}>Start Time: {quiz.startTime}</p>
+            <p className={styles.cardText}>Due Date: {quiz.dueDate}</p>
+            <p className={styles.cardText}>Due Time: {quiz.dueTime}</p>
+            <p className={styles.cardText}>Published By: {quiz.publishedBy}</p>
             <button
-              className="btn btn-outline-success"
+              className={`${styles.btn} ${styles.btnOutlineSuccess}`}
               onClick={handleQuizPage}
             >
               Ready
             </button>
-
             <button
-              className="btn btn-outline-danger"
+              className={`${styles.btn} ${styles.btnOutlineDanger}`}
               onClick={handleComponantPage}
             >
               Go back..

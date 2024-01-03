@@ -1,0 +1,78 @@
+/* components/quizPage.module.css */
+
+.containerFluid {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .timeDisplay {
+    margin-bottom: 20px;
+  }
+  
+  .timeLeft {
+    font-size: 1rem;
+  }
+  
+  .card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .cardBody {
+    padding: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .listUnstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mb2 {
+    margin-bottom: 10px;
+  }
+  
+  .formCheck {
+    display: flex;
+    align-items: center;
+  }
+  
+  .formCheckInput {
+    margin-right: 8px;
+  }
+  
+  .formCheckLabel {
+    font-size: 1rem;
+  }
+  
+  .ms2 {
+    margin-left: 2px;
+  }
+  
+  .alertWarning {
+    color: #dc3545;
+  }
+  
+  .btn {
+    cursor: pointer;
+  }
+  
+  .btnPrimary {
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+  }
+  
+  .btnSuccess {
+    color: #fff;
+    background-color: #28a745;
+    border: 1px solid #28a745;
+  }
+  

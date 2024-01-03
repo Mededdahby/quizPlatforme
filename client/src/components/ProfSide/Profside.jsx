@@ -7,18 +7,18 @@ function Home({ userInfo }) {
     const qcms = await res.json();
     setQcms(qcms);
   }
+
   useEffect(() => {
     getqcms();
   }, []);
+
   const [isAddQuiz, setIsAddQuiz] = useState(false);
   const [qcms, setQcms] = useState([]);
-
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [dueTime, setDueTime] = useState("");
-
   const [classValue, setClassValue] = useState("isil");
   const [subject, setSubject] = useState("java");
   const [correctAnswer, setCorrectAnswer] = useState("a");
@@ -32,24 +32,25 @@ function Home({ userInfo }) {
     const question = {
       text: questionsContent,
       options: [
-        { id: 1, text: answerA },
-        { id: 2, text: answerB },
-        { id: 3, text: answerC },
+        { id: "A", text: answerA },
+        { id: "B", text: answerB },
+        { id: "C", text: answerC },
       ],
       correctOption: correctAnswer,
     };
-    if (questions.length === 0) {
-      setQuestions(question);
-    } else {
-      setQuestions((previousQuestions) => [...previousQuestions, question]);
-    }
+
+    setQuestions((prevQuestions) => {
+      return prevQuestions.length === 0
+        ? [question]
+        : [...prevQuestions, question];
+    });
+
     setAnswerA("");
     setAnswerB("");
     setAnswerC("");
     setCorrectAnswer("a");
     setQuestionsContent("");
   };
-
   async function addQcmBackend(qcm) {
     try {
       const response = await fetch("http://localhost:5000/addqcm", {
@@ -76,20 +77,19 @@ function Home({ userInfo }) {
     const question = {
       text: questionsContent,
       options: [
-        { id: 1, text: answerA },
-        { id: 2, text: answerB },
-        { id: 3, text: answerC },
+        { id: "A", text: answerA },
+        { id: "B", text: answerB },
+        { id: "C", text: answerC },
       ],
       correctOption: correctAnswer,
     };
-  
-    const newQuestions = Array.isArray(questions) ? [...questions, question] : [question];
-  
-    const maxId = qcms.reduce(
-      (max, qcm) => (qcm.id > max ? qcm.id : max),
-      -1
-    );
-  
+
+    const newQuestions = Array.isArray(questions)
+      ? [...questions, question]
+      : [question];
+
+    const maxId = qcms.reduce((max, qcm) => (qcm.id > max ? qcm.id : max), -1);
+
     const newQCM = {
       id: maxId + 1,
       title,
@@ -103,7 +103,7 @@ function Home({ userInfo }) {
       publishedBy: userInfo.fullname,
       isPublished: false,
     };
-  
+
     addQcmBackend(newQCM);
     setTitle("");
     setStartDate("");
@@ -119,7 +119,7 @@ function Home({ userInfo }) {
     setCorrectAnswer("a");
     setQuestionsContent("");
   };
-  
+
   const deleteQcm = async (qcmid) => {
     const response = await fetch("http://localhost:5000/deleteqcm", {
       method: "DELETE",
