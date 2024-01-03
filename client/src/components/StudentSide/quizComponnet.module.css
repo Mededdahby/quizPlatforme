@@ -1,0 +1,33 @@
+/* components/QuizComponent.module.css */
+
+.container-fluid {
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    margin-bottom: 0.5rem;
+  }
+  
+  .date {
+    color: #777;
+  }
+  
+  .btn-outline-success {
+    animation: fadeIn 0.5s;
+  }
+  

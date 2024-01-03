@@ -1,0 +1,104 @@
+/* home.module.css */
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoutbutton {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.welcome {
+    font-weight: bold;
+}
+
+.main {
+    margin: 20px;
+}
+
+.inputfield {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.addquizbutton {
+    background-color: #28a745;
+}
+
+.qcms {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.qcm {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    width: 300px;
+}
+
+.smalldata {
+    margin-bottom: 10px;
+}
+
+.title,
+.class,
+.subject,
+.startdate,
+.duedate,
+.prof {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.addquiz {
+    text-align: center;
+}
+
+.addqustions {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
