@@ -97,7 +97,7 @@ app.delete("/deleteqcm", async (req, res) => {
 app.get("/responseById/:id", async (req, res) => {
   const qcms = await studentAnswers.find(
     { userId: req.params.id },
-    { userId: 1, _id: 0 }
+    { quizId: 1, _id: 0 }
   );
   res.send(qcms);
 });

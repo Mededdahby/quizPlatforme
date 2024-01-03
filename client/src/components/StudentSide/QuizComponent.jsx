@@ -47,12 +47,11 @@ const QuizComponent = ({ userInfo }) => {
   }
 
   function isQuizDone(quizId) {
-    const qcmid = qcmIds.find((e) => e._id == quizId);
-    if (qcmid) {
-      return true;
-    } else {
-      return false;
-    }
+    console.log(qcmIds);
+    console.log(quizId);
+
+    const qcmid = qcmIds.filter((e) => e.quizId == quizId);
+    return qcmid.length > 0;
   }
 
   useEffect(() => {
@@ -79,7 +78,9 @@ const QuizComponent = ({ userInfo }) => {
                   </p>{" "}
                 </div>
                 <div className={styles.cardFooter}>
-                  {!isQuizDone(quiz._id) && (
+                  {isQuizDone(quiz._id) ? (
+                    <h1>Already Passed</h1>
+                  ) : (
                     <button
                       className={`${styles.btn} ${styles.btnOutlineSuccess}`}
                       onClick={() => handleAboutPage(quiz)}
