@@ -1,4 +1,4 @@
-// components/QuizComponent.jsx
+
 import React, { useState, useEffect } from "react";
 import AboutQuiz from "./AboutQuiz";
 import styles from "./quizComponnet.module.css"; // Import the CSS module
@@ -78,7 +78,7 @@ const QuizComponent = ({ userInfo }) => {
                   </p>{" "}
                 </div>
                 <div className={styles.cardFooter}>
-                  {isQuizDone(quiz._id) ? (
+                  {!isQuizDone(quiz._id) ? (
                     <h1>Already Passed</h1>
                   ) : (
                     <button

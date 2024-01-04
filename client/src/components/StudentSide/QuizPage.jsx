@@ -2,7 +2,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Countdown from "react-countdown";
-import QuizComponent from "./QuizComponent";
 import styles from "./quizPage.module.css";
 
 const QuizPage = ({ quizData, userInfo }) => {
@@ -12,7 +11,7 @@ const QuizPage = ({ quizData, userInfo }) => {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timeDisplay, setTimeDisplay] = useState(true);
   const [closeButton, setCloseButton] = useState(true);
-  const [scor, setScor] = useState(0);
+  const [score, setScore] = useState(0);
 
   const navigate = useNavigate();
 
@@ -26,11 +25,29 @@ const QuizPage = ({ quizData, userInfo }) => {
     });
   };
 
+  const calculateScore = async () => {
+    let scor = 0;
+  
+    quizData.questions.forEach((question, index) => {
+      const correctAnswer = question.correctOption.toString(); // Convert to string
+      const userAnswer = answers[index];
+  
+      if (correctAnswer === userAnswer) {
+        scor += 1;
+      }
+    });
+  
+    return scor;
+  };
+
   const handleSaveAnswers = async () => {
-    const d = {
+    const sc = await calculateScore();
+    setScore(sc);
+
+    const data = {
       userId: userInfo.userId,
       quizId: quizData._id,
-      scor,
+      score: sc,
       answers,
     };
 
@@ -40,7 +57,7 @@ const QuizPage = ({ quizData, userInfo }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(d),
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -53,12 +70,11 @@ const QuizPage = ({ quizData, userInfo }) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     handleSaveAnswers();
     setTimeDisplay(false);
     setCloseButton(false);
     setShowNextQuestion(true);
-    window.location.reload();
   };
 
   const handleNextQuestion = () => {
@@ -67,28 +83,28 @@ const QuizPage = ({ quizData, userInfo }) => {
   };
 
   return (
-    <div className={styles.containerFluid}>
-      <div className={styles.timeDisplay}>
-        {timeDisplay && (
-          <Countdown
-            date={Date.now() + timeLeft * 1000}
-            onComplete={handleNextQuestion}
-            renderer={({ seconds }) => (
-              <p className={styles.timeLeft}>Time left: {seconds} seconds</p>
-            )}
-          />
-        )}
-      </div>
-
-      {currentQuestionIndex < quizData.questions.length && (
-        <div className={styles.card}>
-          <div className={styles.cardBody}>
-            <h5 className={styles.cardTitle}>
-              {quizData.questions[currentQuestionIndex].text}
-            </h5>
-            <ul className={styles.listUnstyled}>
-              {quizData.questions[currentQuestionIndex].options.map(
-                (option) => (
+      <div className={styles.containerFluid}>
+        <div className={styles.timeDisplay}>
+          {timeDisplay && (
+            <Countdown
+              date={Date.now() + timeLeft * 1000}
+              onComplete={handleNextQuestion}
+              renderer={({ seconds }) => (
+                <p className={styles.timeLeft}>Time left: {seconds} seconds</p>
+              )}
+            />
+          )}
+        </div>
+    
+        {currentQuestionIndex < quizData.questions.length && (
+          <div className={styles.card}>
+            <div className={styles.cardBody}>
+              <h5 className={styles.cardTitle}>
+                Q {currentQuestionIndex + 1} :{" "}
+                {quizData.questions[currentQuestionIndex].text}
+              </h5>
+              <ul className={styles.listUnstyled}>
+                {quizData.questions[currentQuestionIndex].options.map((option) => (
                   <li key={option.id} className={styles.mb2}>
                     <div className={styles.formCheck}>
                       <input
@@ -106,39 +122,39 @@ const QuizPage = ({ quizData, userInfo }) => {
                       </label>
                     </div>
                   </li>
-                )
-              )}
-            </ul>
+                ))}
+              </ul>
+            </div>
+    
+            {showNextQuestion || (
+              <>
+                <h4 className={styles.alertWarning}>
+                  Your selected answer: {answers[currentQuestionIndex]}
+                </h4>
+                <button
+                  type="button"
+                  className={`${styles.btn} ${styles.btnPrimary}`}
+                  onClick={handleNextQuestion}
+                >
+                  Next
+                </button>
+              </>
+            )}
           </div>
-
-          {showNextQuestion || (
-            <>
-              <h4 className={styles.alertWarning}>
-                Your selected answer: {answers[currentQuestionIndex]}
-              </h4>
-              <button
-                type="button"
-                className={`${styles.btn} ${styles.btnPrimary}`}
-                onClick={handleNextQuestion}
-              >
-                Next
-              </button>
-            </>
-          )}
-        </div>
-      )}
-
-      {currentQuestionIndex === quizData.questions.length && closeButton && (
-        <button
-          type="button"
-          className={`${styles.btn} ${styles.btnSuccess}`}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      )}
-    </div>
-  );
+        )}
+    
+        {currentQuestionIndex === quizData.questions.length && closeButton && (
+          <button
+            type="button"
+            className={`${styles.btn} ${styles.btnSuccess}`}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        )}
+      </div>
+    );
+    
 };
 
 export default QuizPage;

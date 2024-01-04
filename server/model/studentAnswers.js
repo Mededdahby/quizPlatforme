@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const studentScele = new mongoose.Schema({
   quizId: String,
   userId: String,
-  scor: String,
+  score: Number,
   answers: {},
 });
 
