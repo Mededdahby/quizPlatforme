@@ -9,6 +9,7 @@
     align-items: center;
 }
 
+
 .logoutbutton {
     background-color: #dc3545;
     color: white;
@@ -20,6 +21,12 @@
 .welcome {
     font-weight: bold;
 }
+
+
+
+
+
+
 
 .main {
     margin: 20px;
@@ -52,6 +59,12 @@ button {
 
 .addquizbutton {
     background-color: #28a745;
+    margin-right: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
 }
 
 .qcms {
@@ -102,3 +115,34 @@ button {
     margin: 10px 0;
     border-radius: 5px;
 }
+/* styles.css or your specific stylesheet */
+
+.resultscontainer {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  
+  
+  .students {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .student {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: left;
+  }
+  
+  .score,
+  .user {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Add more styles as needed */
+  

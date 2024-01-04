@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 const secretKey = "your-secret-key";
 
 const app = express();
-const uri = "mongodb://localhost:27017/Quiz";
+const uri = "mongodb://127.0.0.1:27017/Quiz";
 
 (async () => {
   await mongoose.connect(uri);
@@ -101,7 +101,17 @@ app.get("/responseById/:id", async (req, res) => {
   );
   res.send(qcms);
 });
+app.get("/getresponses", async (req, res) => {
+  const responses = await studentAnswers.find();
+  res.send(responses);
+});
 
 app.listen(5000, () => {
   console.log("Listening at the port : http:/localhost/5000");
 });
+
+
+
+
+
+

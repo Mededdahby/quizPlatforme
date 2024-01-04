@@ -47,8 +47,6 @@ const QuizComponent = ({ userInfo }) => {
   }
 
   function isQuizDone(quizId) {
-    console.log(qcmIds);
-    console.log(quizId);
 
     const qcmid = qcmIds.filter((e) => e.quizId == quizId);
     return qcmid.length > 0;
@@ -78,7 +76,7 @@ const QuizComponent = ({ userInfo }) => {
                   </p>{" "}
                 </div>
                 <div className={styles.cardFooter}>
-                  {!isQuizDone(quiz._id) ? (
+                  {isQuizDone(quiz._id) ? (
                     <h1>Already Passed</h1>
                   ) : (
                     <button
