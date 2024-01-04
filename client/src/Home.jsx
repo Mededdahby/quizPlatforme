@@ -39,11 +39,9 @@ export default function Home() {
         <div className={styles.welcome}>Welcome {userData.fullname}</div>
         <button onClick={handleLogOut}>Logout</button>
       </nav>
-      {userData.role == "student" ? (
-        <QuizComponent userInfo={userData} />
-      ) : (
-        <Profside userInfo={userData} />
-      )}
+
+      {(userData.role == "student") && <QuizComponent userInfo={userData} />}
+      {(userData.role == "prof") && <Profside userInfo={userData} />}
     </>
   );
 }

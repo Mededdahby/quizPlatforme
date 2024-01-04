@@ -16,7 +16,7 @@ const QuizPage = ({ quizData, userInfo }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const handleAnswerChange = (selectedOption) => {
     setAnswers((prevAnswers) => {
@@ -27,9 +27,12 @@ const QuizPage = ({ quizData, userInfo }) => {
   };
 
   const handleSaveAnswers = async () => {
+
     const d = {
       userId: userInfo.userId,
+      fullname: userInfo.fullname,
       quizId: quizData._id,
+      quiztitle: quizData.title,
       scor,
       answers,
     };
@@ -79,7 +82,6 @@ const QuizPage = ({ quizData, userInfo }) => {
           />
         )}
       </div>
-
       {currentQuestionIndex < quizData.questions.length && (
         <div className={styles.card}>
           <div className={styles.cardBody}>

@@ -47,8 +47,6 @@ const QuizComponent = ({ userInfo }) => {
   }
 
   function isQuizDone(quizId) {
-    console.log(qcmIds);
-    console.log(quizId);
 
     const qcmid = qcmIds.filter((e) => e.quizId == quizId);
     return qcmid.length > 0;
