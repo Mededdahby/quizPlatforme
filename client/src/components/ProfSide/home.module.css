@@ -1,86 +1,97 @@
-/* home.module.css */
 
 .navbar {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: linear-gradient(
+    120deg,
+    rgba(79, 79, 131, 0.39),
+    rgba(153, 44, 204, 0.507)
+  );
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.name {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-style: oblique;
+  font-weight: 900;
+  color: #7e1e5e;
+  text-shadow: 11px 2px 10px rgba(75, 73, 70, 0.589);
+}
 
 .logoutbutton {
-    background-color: #dc3545;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
 }
 
 .welcome {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-
-
-
-
-
-
-.main {
-    margin: 20px;
-}
 
 .inputfield {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 input,
 select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-top: 5px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-top: 5px;
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
+  background-color: #7f8081;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
 }
 
 .addquizbutton {
-    background-color: #28a745;
-    margin-right: 20px;
+  background-color: #28a745;
+  margin-right: 20px;
+  border-radius: 12px;
+
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .qcms {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .qcm {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-    width: 300px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .smalldata {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 .title,
@@ -89,60 +100,61 @@ button {
 .startdate,
 .duedate,
 .prof {
-    font-weight: bold;
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
 }
 
 .actions {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .actions button {
-    background-color: #dc3545;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
+    position: relative;
+  background-color: #dc3545;
+  border-radius: 18px;
+  color: white;
+  left: 75%;
+  border: none;
+  cursor: pointer;
+
 }
 
 .addquiz {
-    text-align: center;
+  text-align: center;
 }
 
 .addqustions {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
 }
-/* styles.css or your specific stylesheet */
 
 .resultscontainer {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  
-  
-  .students {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .student {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-    margin: 10px;
-    text-align: left;
-  }
-  
-  .score,
-  .user {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* Add more styles as needed */
-  
+  text-align: center;
+  padding: 20px;
+}
+
+.students {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.student {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: left;
+}
+
+.score,
+.user {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+

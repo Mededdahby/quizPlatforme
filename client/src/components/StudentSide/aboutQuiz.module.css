@@ -1,18 +1,18 @@
-/* aboutQuiz.module.css */
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     width: 100%;
   }
   
   .card {
     border: 1px solid #ccc;
+    background:linear-gradient(rgb(204, rgb(189, 123, 169) 138), rgb(118, 153, 163)97, 97, 153);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.562);
     max-width: 400px;
     width: 100%;
   }
@@ -51,5 +51,4 @@
     border: 1px solid #dc3545;
   }
   
-  /* Additional styles for QuizPage and QuizComponent can be added as needed */
   

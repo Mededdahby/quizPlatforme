@@ -1,27 +1,38 @@
-/* components/QuizComponent.module.css */
 
 .containerFluid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
+  background: linear-gradient(
+    rgb(230, 6, 238),
+    rgb(255, 187, 0),
+    rgb(88, 255, 130)
+    0.6
+  );
 }
 
 .row {
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.colMd4 {
-  flex: 0 0 30%; /* Adjust the width as needed */
-  margin-bottom: 20px;
-}
+
 
 .card {
+  padding: 15px;
+  margin: 10px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+  text-align: center;
+}
+
+.infoCrad {
+  font-size: small;
+  font-weight: 800;
+  font-variant: small-caps;
+  color: crimson;
 }
 
 .card:hover {
@@ -33,16 +44,20 @@
 }
 
 .cardTitle {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
 
 .cardText {
   margin-bottom: 5px;
+  justify-content: center;
 }
 
 .date {
-  color: #888;
+  color: #3b3939;
+  font-size: small;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .cardFooter {
@@ -68,5 +83,3 @@
 .btnOutlineSuccess:hover {
   background-color: #218838;
 }
-
-/* Add additional styles as needed */

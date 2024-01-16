@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom';
 import styles from './login.module.css';
 
 const Login = () => {
-  const navigate = useNavigate(); // Change to useNavigate
+  const navigate = useNavigate(); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorLogin, setErrorLogin] = useState(false);

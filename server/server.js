@@ -56,7 +56,6 @@ app.post("/login", async (req, res) => {
 
 app.post("/studentAnswers", async (req, res) => {
   try {
-    console.log(req.body);
     await studentAnswers.create(req.body);
     res.json({ message: "Added successfuly" });
   } catch (error) {

@@ -1,13 +1,14 @@
-// Login.jsx
 import React, { useState } from "react";
 import styles from "./Login.module.css"; // Import the CSS module
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginPage, setLoginPage] = useState(true);
+  const [errorLogin, setErrorLogin] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,16 +26,14 @@ const Login = () => {
       });
 
       if (response.ok) {
-        // TODO: we will add new things
-        // * redirection
         const result = await response.json();
         console.log(result.token);
         localStorage.setItem("token", result.token);
         navigate("/");
-        // ? validation
         setLoginPage(false);
         console.log("Login successful!");
       } else {
+        setErrorLogin(true)
         console.error("Login failed.");
       }
     } catch (error) {
@@ -44,31 +43,62 @@ const Login = () => {
 
   return (
     loginPage && (
-      <form className={styles["form-container"]} onSubmit={handleSubmit}>
-        <label className={styles.label}>
-          email:
-          <input
-            className={styles.input}
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <br />
-        <label className={styles.label}>
-          Password:
-          <input
-            className={styles.input}
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button className={styles.button} type="submit">
-          Login
-        </button>
-      </form>
+      <Container  component="main" maxWidth="xs">
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Box flexGrow={1} textAlign="left">
+          </Box>
+          <Box flexGrow={1} textAlign="right">
+          </Box>
+
+        </Box>
+
+        <Box
+          sx={{
+            marginTop: 20,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+                    {
+            errorLogin &&
+            <Typography className={styles.loginFalse}>
+              your password or email is wrong
+            </Typography>
+          }
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your Email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="outlined-basic"
+                  label="Password"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Your Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit" variant="contained" color="success" fullWidth>
+              Login
+            </Button>
+          </form>
+        </Box>
+      </Container>
     )
   );
 };

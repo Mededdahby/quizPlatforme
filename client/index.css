@@ -1,3 +1,8 @@
 body {
-  display: block;
+  background: linear-gradient(
+    rgba(170, 118, 172, 0.479),
+    rgba(223, 189, 98, 0.24),
+    rgba(88, 255, 130, 0.5),
+    0.6
+  );
 }

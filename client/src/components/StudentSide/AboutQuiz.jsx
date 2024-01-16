@@ -1,4 +1,3 @@
-// components/AboutQuiz.jsx
 import React, { useState } from "react";
 import QuizPage from "./QuizPage";
 import QuizComponent from "./QuizComponent";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Countdown from "react-countdown";
 import styles from "./quizPage.module.css";
 
@@ -6,16 +6,12 @@ const QuizPage = ({ quizData, userInfo }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [showNextQuestion, setShowNextQuestion] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(300);
+  const [timeLeft, setTimeLeft] = useState(600);
   const [timeDisplay, setTimeDisplay] = useState(true);
   const [closeButton, setCloseButton] = useState(true);
 
-
-
-
-  useEffect(() => {}, []);
-
   const handleAnswerChange = (selectedOption) => {
+    // e.preventDefault();
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
       newAnswers[currentQuestionIndex] = selectedOption;
@@ -27,10 +23,8 @@ const QuizPage = ({ quizData, userInfo }) => {
     let scor = 0;
 
     quizData.questions.forEach((question, index) => {
-      const correctAnswer = question.correctOption.toString(); // Convert to string
+      const correctAnswer = question.correctOption;
       const userAnswer = answers[index];
-      console.log(userAnswer);
-      console.log(correctAnswer);
       if (correctAnswer == userAnswer) {
         scor += 1;
       }
@@ -70,9 +64,6 @@ const QuizPage = ({ quizData, userInfo }) => {
 
   const handleSubmit = async () => {
     handleSaveAnswers();
-    setTimeDisplay(false);
-    setCloseButton(false);
-    setShowNextQuestion(true);
     window.location.reload();
   };
 
@@ -83,18 +74,19 @@ const QuizPage = ({ quizData, userInfo }) => {
 
   return (
     <div className={styles.containerFluid}>
-      
-      <div className={styles.timeDisplay}>
-        {timeDisplay && (
-          <Countdown
-            date={Date.now() + timeLeft * 1000}
-            onComplete={handleNextQuestion}
-            renderer={({ seconds }) => (
-              <p className={styles.timeLeft}>Time left: {seconds} seconds</p>
-            )}
-          />
-        )}
-      </div>
+      {!closed && (
+        <div className={styles.timeDisplayP}>
+          {timeDisplay && (
+            <Countdown
+              date={Date.now() + timeLeft * 1000}
+              onComplete={handleNextQuestion}
+              renderer={({ seconds }) => (
+                <p className={styles.timeLeft}>Time left: {seconds} seconds</p>
+              )}
+            />
+          )}
+        </div>
+      )}
 
       {currentQuestionIndex < quizData.questions.length && (
         <div className={styles.card}>
@@ -118,7 +110,7 @@ const QuizPage = ({ quizData, userInfo }) => {
                       <label
                         className={`${styles.formCheckLabel} ${styles.ms2}`}
                       >
-                        {option.text}
+                        {option.id}: {option.text}
                       </label>
                     </div>
                   </li>
@@ -129,9 +121,6 @@ const QuizPage = ({ quizData, userInfo }) => {
 
           {showNextQuestion || (
             <>
-              <h4 className={styles}>
-                Your selected answer: {answers[currentQuestionIndex]}
-              </h4>
               <button
                 type="button"
                 className={`${styles.btn} ${styles.btnPrimary}`}
@@ -145,13 +134,18 @@ const QuizPage = ({ quizData, userInfo }) => {
       )}
 
       {currentQuestionIndex === quizData.questions.length && closeButton && (
-        <button
-          type="button"
-          className={`${styles.btn} ${styles.btnSuccess}`}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <>
+          <p>Your anwers are :</p>
+          {answers}
+          <br />
+          <button
+            type="button"
+            className={`${styles.btn} ${styles.btnSuccess}`}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </>
       )}
     </div>
   );

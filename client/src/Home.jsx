@@ -36,12 +36,13 @@ export default function Home() {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.welcome}>Welcome {userData.fullname}</div>
+        <div className={styles.welcome}>Welcome <span className={styles.name}>{userData.fullname}</span></div>
         <button onClick={handleLogOut}>Logout</button>
       </nav>
-
+      <div className={styles.main}>
       {(userData.role == "student") && <QuizComponent userInfo={userData} />}
       {(userData.role == "prof") && <Profside userInfo={userData} />}
+      </div>
     </>
   );
 }
