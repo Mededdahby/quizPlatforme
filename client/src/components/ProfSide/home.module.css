@@ -59,6 +59,10 @@ button {
   cursor: pointer;
 }
 
+.formadd{
+  padding: 20px;
+}
+
 .addquizbutton {
   background-color: #28a745;
   margin-right: 20px;
@@ -69,6 +73,7 @@ button {
 .buttons {
   display: flex;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .qcms {

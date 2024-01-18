@@ -146,7 +146,7 @@ function Home({ userInfo }) {
     <>
       <div className={styles.main}>
         {phase == "addquiz" ? (
-          <form onSubmit={handleAddQuiz}>
+          <form className={styles.formadd} onSubmit={handleAddQuiz}>
             <div className={styles.inputfield}>
               <label>Title:</label>
               <input
