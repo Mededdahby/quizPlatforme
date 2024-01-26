@@ -59,7 +59,7 @@ To get started with the Quiz Platform, follow these steps:
 
 ## Screenshots
 
-![Screenshot 1](![msedge_90Jlaj5enj](https://github.com/Mededdahby/quizPlatforme/assets/99148703/8d60ffd3-89fb-42da-a827-3791542da88b)
+![Screenshot 1]((https://github.com/Mededdahby/quizPlatforme/assets/99148703/8d60ffd3-89fb-42da-a827-3791542da88b)
 )
 *Caption for Screenshot 1*
 
