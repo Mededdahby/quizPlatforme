@@ -59,14 +59,15 @@ To get started with the Quiz Platform, follow these steps:
 
 ## Screenshots
 
-![Login](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/login.png)
 *Login*
+![Login](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/login.png)
 
-![Prof side](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/profside.png)
 *Prof side*
+![Prof side](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/profside.png)
 
-![Student side](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/student.png)
 *Student side*
+![Student side](https://github.com/Mededdahby/quizPlatforme/blob/main/screenshots/student.png)
+
 ## Try It Out
 
 You can try out the Quiz Platform [here](https://qcm-beige.vercel.app/).
